@@ -26,9 +26,9 @@ namespace Core
 
 			view.ShowProgressView ();
 
-			webviewManager.Signup (email, password, "onSignupSuccess", "onSignupFailure");
+			view.SetupCallbacks ();
 
-			view.HideProgressView ();
+			webviewManager.Signup (email, password, "onSignupSuccess", "onSignupFailure");
 		}
 	}
 }

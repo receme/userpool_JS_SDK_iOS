@@ -3,6 +3,7 @@ using System;
 using UIKit;
 using Core;
 using cdeutsch;
+using System.Diagnostics;
 
 namespace UserPool_JSsdk_IOS
 {
@@ -10,6 +11,7 @@ namespace UserPool_JSsdk_IOS
 	{
 		SignupViewPresenter presenter;
 		WebViewManager webManager;
+		string email;
 
 		public SignupViewController (IntPtr handle) : base (handle)
 		{
@@ -24,7 +26,16 @@ namespace UserPool_JSsdk_IOS
 			presenter = new SignupViewPresenter (this, webManager);
 
 			signupBtn.TouchUpInside += (sender, e) => {
+
+				email = emailField.Text;
 				presenter.Signup (emailField.Text, passwordField.Text);
+
+			};
+
+			gotoSigninScreenBtn.TouchUpInside += (sender, e) => {
+
+				var viewcontrolller = Storyboard.InstantiateViewController ("SigninViewController") as SigninViewController;
+				NavigationController.SetViewControllers (new UIViewController [] { viewcontrolller }, false);
 
 			};
 
@@ -47,25 +58,42 @@ namespace UserPool_JSsdk_IOS
 
 		public void SetupCallbacks ()
 		{
-			webManager.OnSuccess += OnSignupSuccess;
-			webManager.OnFailure += OnSignupFailure;
+			webManager.OnSuccess = OnSignupSuccess;
+			webManager.OnFailure = OnSignupFailure;
 		}
 
 
 		public void OnSignupSuccess (FireEventData arg)
 		{
+			HideProgressView ();
 
-			ShowAlert (arg.Data.ToString ());
-			var viewcontroller = Storyboard.InstantiateViewController ("SignupConfirmationViewController") as SignupConfirmationViewController;
-			NavigationController.PushViewController (viewcontroller, true);
+			Debug.WriteLine (arg.Data.ToString ());
+
+
+			InvokeOnMainThread (() => {
+				ShowAlert (Strings.VERIFICATION_CODE_SENT);
+
+				var viewcontroller = Storyboard.InstantiateViewController ("SignupConfirmationViewController") as SignupConfirmationViewController;
+				viewcontroller.email = email;
+				NavigationController.PushViewController (viewcontroller, true); ;
+			});
+
+
 
 		}
 
 		public void OnSignupFailure (FireEventData arg)
 		{
-			ShowAlert (arg.Data.ToString ());
+			Debug.WriteLine (arg.Data.ToString ());
+
+			HideProgressView ();
+
+			InvokeOnMainThread (() => {
+				ShowAlert (Strings.ERROR_OCCURED);
+			});
 
 		}
+
 
 
 	}

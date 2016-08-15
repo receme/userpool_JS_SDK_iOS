@@ -16,13 +16,22 @@ namespace UserPool_JSsdk_IOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITextField confirmationCode { get; set; }
+        UIKit.UITextField confirmationCodeField { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton okBtn { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (confirmationCode != null) {
-                confirmationCode.Dispose ();
-                confirmationCode = null;
+            if (confirmationCodeField != null) {
+                confirmationCodeField.Dispose ();
+                confirmationCodeField = null;
+            }
+
+            if (okBtn != null) {
+                okBtn.Dispose ();
+                okBtn = null;
             }
         }
     }

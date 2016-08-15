@@ -9,6 +9,7 @@ namespace UserPool_JSsdk_IOS
 
 		public static void ShowAlertView (string message)
 		{
+
 			var alert = new UIAlertView ("", message, null, "Ok", null);
 			alert.Show ();
 		}

@@ -20,6 +20,8 @@ namespace UserPool_JSsdk_IOS
 			// Override point for customization after application launch.
 			// If not required for your application you can safely delete this method
 
+			cdeutsch.JsBridge.EnableJsBridge ();
+
 			return true;
 		}
 

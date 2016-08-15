@@ -14,8 +14,25 @@ namespace UserPool_JSsdk_IOS
     [Register ("WelcomeViewController")]
     partial class WelcomeViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton signoutBtn { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel welcomeLabel { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (signoutBtn != null) {
+                signoutBtn.Dispose ();
+                signoutBtn = null;
+            }
+
+            if (welcomeLabel != null) {
+                welcomeLabel.Dispose ();
+                welcomeLabel = null;
+            }
         }
     }
 }

@@ -37,22 +37,22 @@ namespace UserPool_JSsdk_IOS
 
 		public void Signup (string email, string password, string onSuccess, string onFailure)
 		{
-			userpoolGateway.OnSuccess += OnSuccess;
-			userpoolGateway.OnFailure += OnFailure;
+			userpoolGateway.OnSuccess = OnSuccess;
+			userpoolGateway.OnFailure = OnFailure;
 			userpoolGateway.Signup (email, password, onSuccess, onFailure);
 		}
 
 		public void ConfirmRegistration (string email, string code, string onSuccess, string onFailure)
 		{
-			userpoolGateway.OnSuccess += OnSuccess;
-			userpoolGateway.OnFailure += OnFailure;
+			userpoolGateway.OnSuccess = OnSuccess;
+			userpoolGateway.OnFailure = OnFailure;
 			userpoolGateway.ConfirmRegistration (email, code, onSuccess, onFailure);
 		}
 
 		public void AuthenticateUser (string email, string password, string onSuccess, string onFailure)
 		{
-			userpoolGateway.OnSuccess += OnSuccess;
-			userpoolGateway.OnFailure += OnFailure;
+			userpoolGateway.OnSuccess = OnSuccess;
+			userpoolGateway.OnFailure = OnFailure;
 			userpoolGateway.AuthenticateUser (email, password, onSuccess, onFailure);
 		}
 

@@ -54,21 +54,37 @@ namespace UserPool_JSsdk_IOS
 
 		public void OnSigninSuccess (FireEventData arg)
 		{
-			var viewcontroller = Storyboard.InstantiateViewController ("WelcomeViewController") as WelcomeViewController;
-			NavigationController.SetViewControllers (new UIViewController [] { viewcontroller }, true);
+
+			HideProgressView ();
+
+			NSUserDefaults.StandardUserDefaults.SetBool (true, Strings.IS_LOGGEDIN);
+			NSUserDefaults.StandardUserDefaults.Synchronize ();
+
+			InvokeOnMainThread (() => {
+				var viewcontroller = Storyboard.InstantiateViewController ("WelcomeViewController") as WelcomeViewController;
+				viewcontroller.email = emailField.Text;
+				NavigationController.SetViewControllers (new UIViewController [] { viewcontroller }, true);
+			});
+
+
 
 		}
 
 		public void OnSigninFailure (FireEventData arg)
 		{
-			ShowAlert (arg.Data.ToString ());
+
+			HideProgressView ();
+
+			InvokeOnMainThread (() => {
+				ShowAlert ("Login failed");
+			});
 
 		}
 
 		public void SetupCallbacks ()
 		{
-			webManager.OnSuccess += OnSigninSuccess;
-			webManager.OnFailure += OnSigninFailure;
+			webManager.OnSuccess = OnSigninSuccess;
+			webManager.OnFailure = OnSigninFailure;
 		}
 	}
 }

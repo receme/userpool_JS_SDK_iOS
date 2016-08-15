@@ -35,8 +35,6 @@ namespace Core
 
 			webviewManager.AuthenticateUser (email, password, "onSigninSuccess", "onSigninFailure");
 
-			view.HideProgressView ();
-
 
 		}
 	}
