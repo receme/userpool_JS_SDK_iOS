@@ -42,11 +42,13 @@
     <Compile Include="Utils\UtilMethods.cs" />
     <Compile Include="Interfaces\IBaseview.cs" />
     <Compile Include="Utils\Strings.cs" />
+    <Compile Include="AWSServices\AWSConstants.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Presenters\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Utils\" />
+    <Folder Include="AWSServices\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

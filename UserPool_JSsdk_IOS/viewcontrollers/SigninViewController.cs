@@ -55,6 +55,21 @@ namespace UserPool_JSsdk_IOS
 		public void OnSigninSuccess (FireEventData arg)
 		{
 
+			//arg contains token for this user login
+			//you can now set this token in cognito credential to perform other operations.
+
+			//Something like this
+
+			//var credential = new CognitoAWSCredentials (
+			//	AWSConstants.IDENTITY_POOL_ID,
+			//	RegionEndpoint.USEast1
+			//);
+
+			//credential.AddLogin (AWSConstants.USER_POOL_PROVIDER, token);
+
+
+
+
 			HideProgressView ();
 
 			NSUserDefaults.StandardUserDefaults.SetBool (true, Strings.IS_LOGGEDIN);
