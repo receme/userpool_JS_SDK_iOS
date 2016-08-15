@@ -296,6 +296,8 @@ Mt.App.removeEventListener = function (name, fn) {
 
 		public static void AddEventListener (this WebView source, string EventName, Action<FireEventData> Event)
 		{
+			EventListeners = new List<EventListener> ();
+
 			EventListeners.Add (new EventListener (source, EventName, Event));
 		}
 
